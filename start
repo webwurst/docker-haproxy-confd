@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#confd -onetime -verbose -debug -backend env
+#cat /etc/haproxy/haproxy.cfg
+haproxy -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -D
+confd -interval 2 -verbose -debug -scheme=http -node=http://etcd:4001
+
+#confd $@
+# confd -onetime -verbose -debug -backend env
