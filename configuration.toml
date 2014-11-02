@@ -2,6 +2,20 @@
 src	= "haproxy.cfg"
 dest	= "/etc/haproxy/haproxy.cfg"
 keys	= [
-    "owncloud",
+    "services",
 ]
-reload_cmd 	= "haproxy -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -d -D -sf $(cat /var/run/haproxy.pid)"
+reload_cmd 	= "haproxy -V -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -d -D -sf $(cat /var/run/haproxy.pid)"
+
+# reload_cmd 	= """\
+#   iptables -I INPUT -p tcp --dport 80 --syn -j DROP && \
+#   haproxy -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -d -D -sf $(cat /var/run/haproxy.pid) && \
+#   iptables -D INPUT -p tcp --dport 80 --syn -j DROP \
+#   """
+
+# http://serverfault.com/questions/580595/haproxy-graceful-reload-with-zero-packet-loss
+# https://manageacloud.com/cookbook/haproxy_graceful_restart
+
+# /usr/sbin/haproxy -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -sf $(cat /var/run/haproxy.pid)
+
+# http://manpages.ubuntu.com/manpages/utopic/en/man1/haproxy.1.html
+# -V

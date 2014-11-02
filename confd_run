@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#confd -onetime -verbose -debug -node=http://etcd:4001
+exec confd -interval 4 -verbose -debug -node=http://etcd:4001
