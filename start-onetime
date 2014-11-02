@@ -1,8 +1,0 @@
-#!/bin/bash
-
-confd -onetime -verbose -debug -backend env
-cat /etc/haproxy/haproxy.cfg
-exec haproxy -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -db
-
-#confd $@
-# confd -onetime -verbose -debug -backend env
