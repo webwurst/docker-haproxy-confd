@@ -30,6 +30,5 @@ RUN apt-get update && apt-get install -y curl \
 COPY configuration.toml /etc/confd/conf.d/
 COPY haproxy.cfg /etc/confd/templates/
 COPY confd_run /usr/local/bin/
-RUN chmod u+x /usr/local/bin/confd_run
 
 CMD ["confd_run"]
